@@ -9,6 +9,12 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    background: var(-color-background);
+  }
+
   body {
     background: #FFFFFF;
     color: #212121;
@@ -42,4 +48,13 @@ export default createGlobalStyle`
   input, button {
     border: 0;
   }
+
+  :root {
+    --color-background: #FFFFFF;
+    --color-input: #212121;
+    --color-text: #212121;
+
+
+  }
+
 `;
