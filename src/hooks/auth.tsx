@@ -1,19 +1,25 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
 
-interface AuthState {
-  token: string;
-  user: object;
-}
-
-interface SignInCredentials {
+interface SignInCredentialsUser {
   email: string;
   password: string;
 }
 
+interface User {
+  id: string;
+  email: string;
+}
+
+interface AuthState {
+  token: string;
+  user: User;
+}
+
 interface AuthContextData {
-  user: object;
-  signIn(credentials: SignInCredentials): Promise<void>;
+  user: User;
+  signIn(credentials: SignInCredentialsUser): Promise<void>;
   signOut(): void;
 }
 
@@ -33,6 +39,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/users/login', { email, password });
+    console.log(email, password);
 
     const { token, id } = response.data;
 
