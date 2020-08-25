@@ -16,7 +16,7 @@ const Routes: React.FC = () => (
     {/* PRIVATE ROUTES */}
     <Route path="/dashboard" isPrivate component={Dashboard} />
     <Route path="/naver/create" isPrivate component={CreateNaver} />
-    <Route path="/naver/edit" isPrivate component={EditNaver} />
+    <Route path="/naver/edit/:id" isPrivate component={EditNaver} />
   </Switch>
 );
 

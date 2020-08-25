@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiChevronLeft } from 'react-icons/fi';
 
 import { Form } from '@unform/web';
@@ -19,7 +19,6 @@ const Create: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
-  const history = useHistory();
   const { createNaver } = useNaver();
 
   const handleSubmit = useCallback(
@@ -43,8 +42,6 @@ const Create: React.FC = () => {
         await createNaver(data);
 
         setModalShow(true);
-
-        history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
