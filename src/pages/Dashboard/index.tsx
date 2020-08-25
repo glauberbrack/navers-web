@@ -13,6 +13,8 @@ import ModalMessage from '../../components/Modals/ModalMessage';
 import { Container, Content, HeaderContent, ListNavers } from './styles';
 
 const Dashboard: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [currentDeleteNaver, setCurrentDeleteNaver] = useState('');
   const [
     showMoldaConfirmDeleteNaver,
@@ -25,6 +27,11 @@ const Dashboard: React.FC = () => {
   const history = useHistory();
   const { loadNavers, deleteNaver } = useNaver();
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  });
   const loadAllNavers = useCallback(async () => {
     const data = await loadNavers();
 
@@ -64,20 +71,25 @@ const Dashboard: React.FC = () => {
     <>
       <Container>
         <Header />
+
         <Content>
           <HeaderContent>
             <h1>Navers</h1>
             <Button onClick={handleAddNaver}>Adicionar Naver</Button>
           </HeaderContent>
-          <ListNavers>
-            {navers.map(naver => (
-              <CardNaver
-                key={naver.id}
-                naver={naver}
-                OpenModalRemoveNaver={OpenModalRemoveNaver}
-              />
-            ))}
-          </ListNavers>
+          {isLoading ? (
+            'Carregando...'
+          ) : (
+            <ListNavers>
+              {navers.map(naver => (
+                <CardNaver
+                  key={naver.id}
+                  naver={naver}
+                  OpenModalRemoveNaver={OpenModalRemoveNaver}
+                />
+              ))}
+            </ListNavers>
+          )}
         </Content>
       </Container>
       <ModalConfirmRemoveNaver
