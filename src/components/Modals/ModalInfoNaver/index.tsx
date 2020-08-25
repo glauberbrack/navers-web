@@ -57,8 +57,9 @@ const ModalInfoNaver: React.FC<Props> = ({ show, onHide, naver, onDelete }) => {
               <p>Idade</p>
               <span>
                 {differenceInYears(new Date(), parseISO(naver.birthdate))}
-                anos
-              </span>
+{' '}
+anos
+</span>
             </InfoNaver>
             <InfoNaver>
               <p>Tempo de empresa</p>
@@ -67,6 +68,7 @@ const ModalInfoNaver: React.FC<Props> = ({ show, onHide, naver, onDelete }) => {
                   new Date(),
                   parseISO(naver.admission_date),
                 )}
+{' '}
                 meses
               </span>
             </InfoNaver>

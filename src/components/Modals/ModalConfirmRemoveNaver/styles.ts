@@ -61,7 +61,7 @@ export const Body = styled(Modal.Body)`
 export const Cancel = styled(Button)`
   background: var(--color-background);
   border: 1px solid #212121;
-  color: var(-color-text);
+  color: var(--color-text);
   transition: background-color 0.3s;
 
   &:hover {
