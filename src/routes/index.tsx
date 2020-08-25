@@ -5,6 +5,7 @@ import SignIn from '../pages/SignIn';
 
 import Dashboard from '../pages/Dashboard';
 import CreateNaver from '../pages/Navers/Create';
+import EditNaver from '../pages/Navers/Edit';
 
 import Route from './Route';
 
@@ -15,6 +16,7 @@ const Routes: React.FC = () => (
     {/* PRIVATE ROUTES */}
     <Route path="/dashboard" isPrivate component={Dashboard} />
     <Route path="/naver/create" isPrivate component={CreateNaver} />
+    <Route path="/naver/edit" isPrivate component={EditNaver} />
   </Switch>
 );
 

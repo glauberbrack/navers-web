@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
