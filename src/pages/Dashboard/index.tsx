@@ -27,7 +27,6 @@ const Dashboard: React.FC = () => {
 
   const loadAllNavers = useCallback(async () => {
     const data = await loadNavers();
-    console.log(data);
 
     setNavers(data);
   }, [loadNavers]);
@@ -37,7 +36,7 @@ const Dashboard: React.FC = () => {
   }, [loadAllNavers]);
 
   function handleAddNaver() {
-    history.push('/dashboard');
+    history.push('/naver/create');
   }
 
   const OpenModalRemoveNaver = useCallback((id: string) => {
@@ -68,7 +67,7 @@ const Dashboard: React.FC = () => {
         <Content>
           <HeaderContent>
             <h1>Navers</h1>
-            <Button onClick={handleAddNaver}>Adicionar Never</Button>
+            <Button onClick={handleAddNaver}>Adicionar Naver</Button>
           </HeaderContent>
           <ListNavers>
             {navers.map(naver => (
