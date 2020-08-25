@@ -33,7 +33,7 @@ const ModalInfoNaver: React.FC<Props> = ({ show, onHide, naver, onDelete }) => {
   const history = useHistory();
 
   function handleMoveToEditNaver(id: string) {
-    history.push(`/edit-naver/${id}`);
+    history.push(`/naver/edit/${id}`);
   }
 
   return (
