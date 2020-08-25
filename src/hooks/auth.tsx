@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-import React, { createContext, useCallback, useState, useContext } from 'react';
+import React, { createContext, useContext, useCallback, useState } from 'react';
+
 import api from '../services/api';
 
 interface SignInCredentialsUser {
@@ -17,21 +17,26 @@ interface AuthState {
   user: User;
 }
 
-interface AuthContextData {
+interface AuthContext {
   user: User;
   signIn(credentials: SignInCredentialsUser): Promise<void>;
   signOut(): void;
 }
 
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+const AuthContext = createContext<AuthContext>({} as AuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@Navers:token');
-    const user = localStorage.getItem('@Navers:user');
+    const user = localStorage.getItem('@Naver:user');
+    const token = localStorage.getItem('@Naver:token');
 
-    if (token && user) {
-      return { token, user: JSON.parse(user) };
+    if (user && token) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
+      return {
+        token,
+        user: JSON.parse(user),
+      };
     }
 
     return {} as AuthState;
@@ -39,25 +44,27 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/users/login', { email, password });
-    console.log(email, password);
 
     const { token, id } = response.data;
 
-    localStorage.setItem('@Navers:token', token.token);
     localStorage.setItem(
-      '@Navers:user',
+      '@Naver:user',
       JSON.stringify({ user: { id, email } }),
     );
+    localStorage.setItem('@Naver:token', token);
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user: { id, email } });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@Navers:token');
-    localStorage.removeItem('@Navers:user');
+    localStorage.removeItem('@Naver:token');
+    localStorage.removeItem('@Naver:user');
 
     setData({} as AuthState);
   }, []);
+
   return (
     <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
@@ -65,12 +72,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
-export function useAuth(): AuthContextData {
+export function useAuth(): AuthContext {
   const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useAuth must be used with and AuthProvider');
-  }
 
   return context;
 }
