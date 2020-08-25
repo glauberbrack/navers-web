@@ -5,7 +5,7 @@
 
 
 <h1 align="center">
-    <img alt="navers" title="#navers" src=".github/dashboard.gif" width="720px" />
+    <img alt="navers" title="#navers" src=".github/web.gif" width="720px" />
 </h1>
 
 
