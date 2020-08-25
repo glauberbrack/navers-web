@@ -56,14 +56,15 @@ const SignIn: React.FC = () => {
     <Container>
       <AnimationContainer>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <img src={logo} alt="Nave" />
+          <img src={logo} alt="Nave.rs" />
 
           <Input name="email" label="E-mail" placeholder="E-mail" />
+
           <Input
             name="password"
-            type="password"
             label="Senha"
             placeholder="Senha"
+            type="password"
           />
 
           <Button type="submit">Entrar</Button>

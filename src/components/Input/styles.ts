@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #ffffff;
-  padding: 15px;
-  width: 100%;
   display: flex;
   align-items: center;
+  height: 40px;
+  width: 100%;
+  padding: 8px;
+
+  background: var(--color-input);
   border: 1px solid var(--color-input-border);
 
   input {
@@ -27,9 +29,11 @@ export const Error = styled.p`
 `;
 
 export const Label = styled.p`
-  text-align: left;
-  font-weight: bold;
-  font-size: 14px;
   padding-bottom: 5px;
   display: flex;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-text);
 `;

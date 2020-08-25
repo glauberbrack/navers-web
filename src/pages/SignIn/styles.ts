@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-const appearFromLeft = keyframes`
+const appearFromTop = keyframes`
   from {
     opacity: 0;
     transform: translateY(-50px);
@@ -23,7 +23,7 @@ export const AnimationContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: ${appearFromLeft} 1s;
+  animation: ${appearFromTop} 1s;
 
   form {
     padding: 30px;
@@ -36,7 +36,7 @@ export const AnimationContainer = styled.div`
       padding: 10px;
       margin-bottom: 15px;
       height: 80px;
-      width: 62%;
+      max-width: 100%;
     }
 
     div {

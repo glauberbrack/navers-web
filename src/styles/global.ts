@@ -51,7 +51,8 @@ export default createGlobalStyle`
 
   :root {
     --color-background: #FFFFFF;
-    --color-input: #212121;
+    --color-button: #212121;
+    --color-input: #FFFFFF;
     --color-input-border: #424242;
     --color-text: #212121;
     --color-placeholder: #9e9e9e;
